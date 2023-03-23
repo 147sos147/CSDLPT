@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:object="${sanPham}"  >
+<table>
+<tr>
+<td>
+<input th:field="*{MaSP}" type="text">
+    <input th:field="*{Ten_SP}" type="text">
+    <button type="submit" ><a th:href="@{/trangChu}">Quay Lại </a></button>
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
