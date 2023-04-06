@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom css - Các file css do chúng ta tự viết -->
+    <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
+</head>
+<body>
+<div th:replace="~{layout/header::menu}"></div>
+
+
+<main role="main">
+    <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+    <div class="container mt-4">
+        <div id="thongbao" class="alert alert-danger d-none face" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <h1 class="text-center">Sản Phẩm</h1>
+        <div class="row">
+            <div class="col col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Loại Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>Chi Nhánh</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody id="datarow">
+                    <tr th:each="d ,stt: ${product}">
+                        <td><span th:text="${stt.count}"></span></td>
+                        <td ><span th:text="${d.name_product}"></span></td>
+                        <td class="text-right"><span th:text="${d.type_product}"></span></td>
+                        <td class="text-right"><span th:text="${d.price}"></span></td>
+                        <td class="text-right"><span th:text="${d.branch.name_branch}"></span></td>
+                        <td>
+                            <a id="delete_1" data-sp-ma="2" class="btn btn-light btn-delete-sanpham">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh Sửa
+                            </a>
+                            <!-- Nút xóa, bấm vào sẽ xóa thông tin dựa vào khóa chính `sp_ma` -->
+                            ||
+                            <a id="delete_1" data-sp-ma="2" class="btn btn-light btn-delete-sanpham"  th:href="@{/delete-product/__${d.id}__}">
+                                <i class="fa fa-trash" aria-hidden="true"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a th:href="@{/index}" class="btn btn-warning btn-md"><i class="fa fa-arrow-left"
+                                                                          aria-hidden="true"></i>&nbsp;Quay
+                    về trang chủ</a>
+                <a th:href="@{/create-product}" class="btn btn-primary btn-md"><i
+                        class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Sản Phẩm</a>
+            </div>
+        </div>
+    </div>
+    <!-- End block content -->
+</main>
+<div  th:replace="~{layout/footer::footer}"></div>
+</body>
+</html>

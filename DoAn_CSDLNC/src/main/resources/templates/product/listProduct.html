@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Custom css - Các file css do chúng ta tự viết -->
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css">
+</head>
+
+<body>
+<div th:replace="~{layout/header::menu}"></div>
+
+
+<main role="main">
+
+    <!-- Danh sách sản phẩm -->
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Danh sách Sản phẩm</h1>
+            <p class="lead text-muted">Các sản phẩm với chất lượng, uy tín, cam kết từ nhà Sản xuất, phân phối và
+                bảo hành
+                chính hãng.</p>
+        </div>
+    </section>
+
+    <!-- Giải thuật duyệt và render Danh sách sản phẩm theo dòng, cột của Bootstrap -->
+    <div class="danhsachsanpham py-5 bg-light">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-4" th:each="products : ${product}">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="pages/product-detail.html">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="350"
+                                 src="/assets/img/product/samsung-s3.webp">
+                        </a>
+                        <div class="card-body">
+                            <a href="pages/product-detail.html">
+                                <h5><span th:text="${products.name_product}"></span></h5>
+                            </a>
+                            <h6><span th:text="${products.type_product}"></span></h6>
+                            <p class="card-text"><span th:text="${products.information}"></span></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary"
+                                       th:href="@{/product-details/__${products.id}__}">Xem chi tiết</a>
+                                </div>
+                                <small class="text-muted text-right">
+                                    <b><span th:text="${products.price}"></span>00.VND</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- End block content -->
+</main>
+
+<!-- footer -->
+<div  th:replace="~{layout/footer::footer}"></div>
+
+</body>
+
+</html>
